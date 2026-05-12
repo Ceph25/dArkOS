@@ -410,6 +410,12 @@ while read GAME_SYSTEM; do
   fi
 done <game_systems.txt
 
+for extra_dir in cdimono1 gc tigerlcd
+do
+  echo -e "Creating ${fat32_mountpoint}/${extra_dir} for rk3566 only\n"
+  sudo mkdir -p ${fat32_mountpoint}/${extra_dir}
+done
+
 # Add latest version of PortMaster install to roms/tools folder
 for (( ; ; ))
 do
