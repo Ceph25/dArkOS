@@ -279,7 +279,9 @@ sudo chroot Arkbuild/ bash -c "ln -sfv /roms/themes/ /etc/emulationstation/theme
 
 # Also expose /roms2/themes via the user themes path so ES picks up themes
 # from the second SD card in SD2-for-Roms mode (dangles harmlessly otherwise).
-sudo chroot Arkbuild/ bash -c "ln -sfv /roms2/themes/ /home/ark/.emulationstation/themes"
+if [[ "$UNIT" != *"rgb10"* ]] && [[ "$UNIT" != "rk2020" ]] && [[ "$UNIT" != *"oga"* ]]; then
+  sudo chroot Arkbuild/ bash -c "ln -sfv /roms2/themes/ /home/ark/.emulationstation/themes"
+fi
 
 # Link music folder to /roms/bgmusic
 sudo rm -rf Arkbuild/home/ark/.emulationstation/music
