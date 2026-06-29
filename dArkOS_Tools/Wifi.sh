@@ -156,14 +156,22 @@ Select() {
     # get password from input
     PASS=`$KEYBOARD "Enter Wi-Fi password for ${1:0:15}" | tail -n 1`
     /opt/inttools/gptokeyb -1 "Wifi.sh" -c "/opt/inttools/keys.gptk" > /dev/null &
-    if [[ ! -e "/dev/input/by-path/platform-odroidgo2-joypad-event-joystick" ]]; then
-      if test ! -z "$(cat /home/ark/.config/.DEVICE | grep RGB20PRO | tr -d '\0')"
-      then
-        sudo setfont /usr/share/consolefonts/Lat7-TerminusBold32x16.psf.gz
-      else
-        sudo setfont /usr/share/consolefonts/Lat7-TerminusBold24x12.psf.gz
-      fi
-    fi
+	if [[ ! -e "/dev/input/by-path/platform-odroidgo2-joypad-event-joystick" ]]; then
+	  if test ! -z "$(cat /home/ark/.config/.DEVICE | grep RG503 | tr -d '\0')"
+	  then
+		sudo setfont /usr/share/consolefonts/Lat7-TerminusBold20x10.psf.gz
+	  elif test ! -z "$(cat /home/ark/.config/.DEVICE | grep RGB20PRO | tr -d '\0')"
+	  then
+		sudo setfont /usr/share/consolefonts/Lat7-TerminusBold32x16.psf.gz
+	  elif test ! -z "$(cat /home/ark/.config/.DEVICE | grep MINILOONG | tr -d '\0')"
+	  then
+		sudo setfont /usr/share/consolefonts/Lat7-TerminusBold28x14.psf.gz
+	  else
+		sudo setfont /usr/share/consolefonts/Lat7-TerminusBold22x11.psf.gz
+	  fi
+	else
+	  sudo setfont /usr/share/consolefonts/Lat7-Terminus16.psf.gz
+	fi
   fi
 
   # try to connect
